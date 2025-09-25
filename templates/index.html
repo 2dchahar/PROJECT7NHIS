@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Disaster Tweet Classifier</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    input[type=text]{ width: 80%; padding: .5rem; }
+    button{ padding: .4rem .8rem; }
+    .result{ margin-top: 1rem; }
+    .pred{ font-weight: bold; font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+  <h1>Disaster Tweet Classifier</h1>
+  <form method="post">
+    <input type="text" name="tweet" placeholder="Enter tweet text" value="{{ text|default('') }}" />
+    <button type="submit">Predict</button>
+  </form>
+
+  {% if result %}
+    <div class="result">
+      <div class="pred">
+        {% if result.pred == 1 %}🚨 Disaster detected{% else %}✅ Not disaster{% endif %}
+      </div>
+      <div>Probability (disaster): {{ result.prob_positive | round(3) }}</div>
+    </div>
+  {% endif %}
+</body>
+</html>
