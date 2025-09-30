@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Disaster Tweet Classifier</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f9fc; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);}
+    h1 { text-align: center; color: #333; }
+    p { color: #666; font-size: 14px; text-align: center; }
+    input[type=text] { width: 100%; padding: 10px; margin-top: 15px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; }
+    button { display: block; margin: 20px auto; background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    .result { margin-top: 20px; text-align: center; }
+    .success { color: green; font-weight: bold; font-size: 18px; }
+    .danger { color: red; font-weight: bold; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚨 Disaster Tweet Classifier</h1>
+    <p>Paste a tweet below and check if it reports a disaster.</p>
+
+    <form method="post">
+      <input type="text" name="tweet" placeholder="Paste tweet here..." value="{{ text|default('') }}">
+      <button type="submit">Classify</button>
+    </form>
+
+    {% if result %}
+      <div class="result">
+        {% if result.pred == 1 %}
+          <div class="danger">⚠ Disaster Detected!</div>
+        {% else %}
+          <div class="success">✅ Not a Disaster</div>
+        {% endif %}
+        <p>Confidence (Disaster): {{ result.prob_positive | round(3) }}</p>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>

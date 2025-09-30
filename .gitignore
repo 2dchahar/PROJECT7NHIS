@@ -1,0 +1,35 @@
+# ------------------------
+# Python cache / bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS / IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Build / dist
+build/
+dist/
+*.egg-info/
+
+# Model files (optional, keep if small)
+model/*.joblib
+model/*.pkl
+
+# Data (if dataset is large)
+*.csv
+*.xlsx
+*.tsv
